@@ -29,7 +29,7 @@ def echo(message):
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
     if call.message:
-        if call.data == "test":
+        if call.data == "yes":
             bot.send_message(chat_id=call.message.chat.id, text='Борода')
         elif call.data == 'cig':
             bot.send_message(chat_id=call.message.chat.id, text='Курить вредно')
