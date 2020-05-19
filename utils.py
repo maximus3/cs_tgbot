@@ -55,7 +55,7 @@ def make_game_keyb(point, cur):
     data = []
     for elem in wrongs:
         data.append((elem, 'wrong' + str(len(data)) + str(cur)))
-    data.append((right, 'right'))
+    data.append((right, 'right' + str(cur)))
     random.shuffle(data)
 
     keyboard = types.InlineKeyboardMarkup()
