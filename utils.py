@@ -1,4 +1,5 @@
 from telebot import types
+import random
 
 
 class UserData:
@@ -12,7 +13,7 @@ class UserData:
         self.logged = True
         self.username = username
 
-    def logout(self, username):
+    def logout(self):
         self.logged = False
         self.username = None
         self.score = 0
@@ -22,6 +23,9 @@ textData = {
     'Vadim_q': 'У тебя что-то срочное?',
     'signup_OK': 'Регистрация прошла успешно!',
     'signup_ERR': 'Пользователь с данным никнеймом уже существует',
+    'game_result': 'Ваш результат: {} баллов из {}',
+    'no_reg': 'Вы должны зарегистрироваться!',
+    'game_start': 'Игра началась!',
 }
 
 Vadim_ans = {
@@ -45,3 +49,24 @@ def get_Vadim_keyb():
     return keyboard
 
 
+def make_game_keyb(point, cur):
+    wrongs = point.wrong_answer.split(';')
+    right = point.right_answer
+    data = []
+    for elem in wrongs:
+        data.append((elem, 'wrong' + str(len(data)) + str(cur)))
+    data.append((right, 'right'))
+    random.shuffle(data)
+
+    keyboard = types.InlineKeyboardMarkup()
+    for elem in data:
+        btn = types.InlineKeyboardButton(text=elem[0], callback_data='game_' + elem[1])
+        keyboard.add(btn)
+    return keyboard
+
+
+def get_sum_score(points):
+    sm = 0
+    for point in points:
+        sm += point.score
+    return sm

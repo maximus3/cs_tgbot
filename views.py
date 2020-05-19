@@ -1,10 +1,29 @@
 from models import *
 from datetime import date
+import os
 
 
 def create_tables():
+    if os.path.exists(DATABASE_NAME):
+        return
     with database:
         database.create_tables([User, Point])
+    Point.create(score=1,
+                 question='Какой ответ верный?',
+                 right_answer='Этот',
+                 wrong_answer='Не этот')
+    Point.create(score=7,
+                 question='Сколько стоит рубль?',
+                 right_answer='1 рубль',
+                 wrong_answer='75 рублей;5 рублей;2 рубля')
+    Point.create(score=3,
+                 question='Квадратный корень из 256',
+                 right_answer='16',
+                 wrong_answer='25;13;256;6;36')
+    Point.create(score=9,
+                 question='В мире лучше нет пока',
+                 right_answer='факультета ВМК',
+                 wrong_answer='молока и огурца;Я вчера купил слона;Ратата тата тата;Мда')
 
 
 def signup_db(username=None, score=0):

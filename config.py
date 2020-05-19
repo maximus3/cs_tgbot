@@ -1,3 +1,4 @@
 # -*- coding: utf-8 -*-
 
-TOKEN = 'TOKEN_HERE'
+TOKEN = ''
+DATABASE_NAME = 'game.db'

@@ -1,6 +1,8 @@
 import peewee
 
-database = peewee.SqliteDatabase('game.db')
+from config import DATABASE_NAME
+
+database = peewee.SqliteDatabase(DATABASE_NAME)
 
 
 class BaseModel(peewee.Model):
@@ -18,5 +20,5 @@ class User(BaseModel):
 class Point(BaseModel):
     score = peewee.IntegerField()
     question = peewee.TextField()
-    wrong_answer = peewee.TextField()
     right_answer = peewee.TextField()
+    wrong_answer = peewee.TextField()
